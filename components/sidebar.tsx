@@ -4,19 +4,17 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
-    Home,
-    BarChart2,
-    Building2,
-    Folder,
-    Wallet,
-    Receipt,
-    CreditCard,
-    Users2,
-    Shield,
-    MessagesSquare,
-    Video,
-    Settings,
+    LayoutDashboard,
+    Mic2,
     HelpCircle,
+    FolderHeart,
+    Library,
+    UserCircle,
+    CreditCard,
+    Users,
+    Bell,
+    Shield,
+    MessageCircle,
     Menu,
     ChevronLeft,
     LucideIcon,
@@ -30,6 +28,7 @@ interface NavItem {
     name: string;
     href: string;
     icon: LucideIcon;
+    badge?: boolean;
 }
 
 // interface NavigationItems {
@@ -52,28 +51,24 @@ interface CategorySectionProps {
 // Reorganize navigation items by category
 const navigationItems = {
     discover: [
-        { name: "Dashboard", href: "/", icon: Home },
-        { name: "Transcribe", href: "/transcribe", icon: BarChart2 },
-        { name: "How-to-Use", href: "/how-to-use", icon: Building2 },
-        { name: "Trending Spaces", href: "/trending-spaces", icon: Folder },
+        { name: "Dashboard", href: "/", icon: LayoutDashboard },
+        { name: "Transcribe", href: "/transcribe", icon: Mic2 },
+        { name: "How-to-Use", href: "/how-to-use", icon: HelpCircle },
+        { name: "Trending Spaces", href: "/trending-spaces", icon: FolderHeart, badge: true },
     ],
     content: [
-        { name: "My Library", href: "/my-library", icon: Wallet },
+        { name: "My Library", href: "/my-library", icon: Library },
     ],
     account: [
-        { name: "Profile", href: "/profile", icon: Receipt },
+        { name: "Profile", href: "/profile", icon: UserCircle },
         { name: "Subscription", href: "/subscription", icon: CreditCard },
-        { name: "Referrals", href: "/referrals", icon: Users2 },
+        { name: "Referrals", href: "/referrals", icon: Users },
     ],
     other: [
-        { name: "What's New", href: "/whats-new", icon: Shield },
-        { name: "Notifications", href: "/notifications", icon: MessagesSquare },
-        { name: "Telegram Support", href: "/telegram-support", icon: Video },
+        { name: "What's New", href: "/whats-new", icon: Shield, badge: true },
+        { name: "Notifications", href: "/notifications", icon: Bell },
+        { name: "Telegram Support", href: "/telegram-support", icon: MessageCircle },
     ],
-    bottom: [
-        { name: "Settings", href: "/settings", icon: Settings },
-        { name: "Help", href: "/help", icon: HelpCircle },
-    ]
 }
 
 export function Sidebar() {
@@ -87,15 +82,18 @@ export function Sidebar() {
                 <Link
                     href={item.href}
                     className={cn(
-                        "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                        "flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors relative",
                         pathname === item.href
-                            ? "bg-secondary text-secondary-foreground"
-                            : "text-muted-foreground hover:bg-secondary hover:text-secondary-foreground",
+                            ? "bg-[#0B2847] text-white"
+                            : "text-[#8A93A6] hover:bg-[#0B2847] hover:text-white",
                         isCollapsed && "justify-center px-2",
                     )}
                 >
-                    <item.icon className={cn("h-4 w-4", !isCollapsed && "mr-3")} />
+                    <item.icon className={cn("h-5 w-5", !isCollapsed && "mr-3")} />
                     {!isCollapsed && <span>{item.name}</span>}
+                    {item.badge && (
+                        <span className="absolute right-2 top-1/2 -translate-y-1/2 h-2 w-2 rounded-full bg-blue-500" />
+                    )}
                 </Link>
             </TooltipTrigger>
             {isCollapsed && (
@@ -109,7 +107,7 @@ export function Sidebar() {
     const CategorySection = ({ title, items }:CategorySectionProps) => (
         <div className="mb-6">
             {!isCollapsed && (
-                <h3 className="mb-4 px-3 text-foreground/60 text-xs font-semibold uppercase tracking-wider">
+                <h3 className="mb-2 px-3 text-[#8A93A6] text-xs font-medium uppercase tracking-wider">
                     {title}
                 </h3>
             )}
@@ -133,12 +131,17 @@ export function Sidebar() {
                 </button>
                 <div
                     className={cn(
-                        "fixed inset-y-0 z-20 flex flex-col font-geomGraphy bg-background transition-all duration-300 ease-in-out lg:static",
-                        isCollapsed ? "w-[72px]" : "w-72",
+                        "fixed inset-y-0 z-20 flex flex-col font-geomGraphy transition-all duration-300 ease-in-out lg:static",
+                        isCollapsed ? "w-[72px]" : "w-[311px]",
                         isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
                     )}
+                    style={{
+                        backgroundImage: 'url("/leftnav_bg.svg")',
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat'
+                    }}
                 >
-                    <div className="border-b border-border">
+                    <div className="border-b border-[#0C3766]/50">
                         <div className={cn("flex h-16 items-center gap-2 px-4", isCollapsed && "justify-center px-2")}>
                             {!isCollapsed && (
                                 <Link href="/" className="flex items-center font-semibold h-full">
@@ -150,14 +153,13 @@ export function Sidebar() {
                                             alt="logo"
                                             className="h-full"
                                         />
-                                        {/* Space Spy */}
                                     </div>
                                 </Link>
                             )}
                             <Button
                                 variant="ghost"
                                 size="sm"
-                                className={cn("ml-auto h-8 w-8", isCollapsed && "ml-0")}
+                                className={cn("ml-auto h-8 w-8 text-white", isCollapsed && "ml-0")}
                                 onClick={() => setIsCollapsed(!isCollapsed)}
                             >
                                 <ChevronLeft className={cn("h-4 w-4 transition-transform", isCollapsed && "rotate-180")} />
@@ -165,28 +167,22 @@ export function Sidebar() {
                             </Button>
                         </div>
                     </div>
-                    <div className="flex-1 overflow-auto py-6 px-2">
+                    <div className="flex-1 overflow-auto py-6 px-3">
                         <CategorySection title="DISCOVER" items={navigationItems.discover} />
-                        
-                        <div className="h-px bg-border my-4" />
                         <CategorySection title="CONTENT" items={navigationItems.content} />
-                        
-                        <div className="h-px bg-border my-4" />
                         <CategorySection title="ACCOUNT" items={navigationItems.account} />
-                        
-                        <div className="h-px bg-border my-4" />
                         <CategorySection title="OTHER" items={navigationItems.other} />
                     </div>
 
-                    {/* might need in future */}
-
-                    {/* <div className="border-t border-border p-2">
-                        <nav className="space-y-1">
-                            {navigationItems.bottom.map((item) => (
-                                <NavItem key={item.name} item={item} />
-                            ))}
-                        </nav>
-                    </div> */}
+                    {!isCollapsed && (
+                        <div className="p-4 mx-3 mb-4 bg-[#0B2847] rounded-lg">
+                            <div className="text-sm font-medium text-white mb-1">Refer and get $5</div>
+                            <div className="text-xs text-[#8A93A6] mb-3">Invite your friends to sign up using your referral code</div>
+                            <Button variant="outline" className="w-full bg-transparent text-white border-[#0C3766] hover:bg-[#0C3766]/50">
+                                Refer
+                            </Button>
+                        </div>
+                    )}
                 </div>
             </>
         </TooltipProvider>
