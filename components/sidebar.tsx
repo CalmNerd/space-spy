@@ -22,6 +22,7 @@ import {
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip"
+import { CardCarousel } from "@/components/ui/card-carousel"
 import Image from "next/image"
 
 interface NavItem {
@@ -149,7 +150,7 @@ export function Sidebar() {
                         backgroundRepeat: 'no-repeat'
                     }}
                 >
-                    <div className="border-b border-[#0C3766]/50">
+                    <div className="border-b pt-4 border-[#0C3766]/50">
                         <div className={cn("flex h-16 items-center gap-2 px-4", isCollapsed && "justify-center px-2")}>
                             {!isCollapsed && (
                                 <Link href="/" className="flex items-center font-semibold h-full">
@@ -175,20 +176,15 @@ export function Sidebar() {
                             </Button>
                         </div>
                     </div>
-                    <div className="flex-1 overflow-auto py-8 px-3">
+                    <div className="flex-1 overflow-auto pt-8  px-3">
                         <CategorySection title="DISCOVER" items={navigationItems.discover} />
                         <CategorySection title="CONTENT" items={navigationItems.content} />
                         <CategorySection title="ACCOUNT" items={navigationItems.account} />
                         <CategorySection title="OTHER" items={navigationItems.other} />
                     </div>
-
                     {!isCollapsed && (
-                        <div className="p-4 mx-3 mb-4 bg-[#0B2847] rounded-lg">
-                            <div className="text-sm font-medium text-white mb-1">Refer and get $5</div>
-                            <div className="text-xs text-[#8A93A6] mb-3">Invite your friends to sign up using your referral code</div>
-                            <Button variant="outline" className="w-full">
-                                Refer
-                            </Button>
+                        <div className="">
+                            <CardCarousel />
                         </div>
                     )}
                 </div>

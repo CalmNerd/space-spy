@@ -123,3 +123,25 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Swiper Pagination Styles */
+.swiper-pagination {
+  position: relative !important;
+  bottom: 0 !important;
+  margin-top: 8px;
+}
+
+.swiper-pagination-bullet {
+  width: 4px !important;
+  height: 4px !important;
+  margin: 0 4px !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  opacity: 1 !important;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: #2160DC !important;
+  width: 16px !important;
+  border-radius: 4px !important;
+}
