@@ -79,22 +79,30 @@ export function Sidebar() {
     const NavItem = ({ item }:NavItemProps) => (
         <Tooltip delayDuration={0}>
             <TooltipTrigger asChild>
-                <Link
-                    href={item.href}
+                <Button
+                    variant={pathname === item.href ? "nav-active" : "nav"}
                     className={cn(
-                        "flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors relative",
-                        pathname === item.href
-                            ? "bg-[#0B2847] text-white"
-                            : "text-[#8A93A6] hover:bg-[#0B2847] hover:text-white",
-                        isCollapsed && "justify-center px-2",
+                        "relative group",
+                        isCollapsed && "justify-center px-2"
                     )}
+                    asChild
                 >
-                    <item.icon className={cn("h-5 w-5", !isCollapsed && "mr-3")} />
-                    {!isCollapsed && <span>{item.name}</span>}
-                    {item.badge && (
-                        <span className="absolute right-2 top-1/2 -translate-y-1/2 h-2 w-2 rounded-full bg-blue-500" />
-                    )}
-                </Link>
+                    <Link href={item.href}>
+                        <item.icon 
+                            className={cn(
+                                "h-5 w-5 shrink-0",
+                                !isCollapsed && "mr-3",
+                                pathname === item.href ? "text-white" : "text-[#4A5264] group-hover:text-white"
+                            )} 
+                        />
+                        {!isCollapsed && (
+                            <span className="font-medium tracking-wide">{item.name}</span>
+                        )}
+                        {item.badge && (
+                            <span className="absolute right-2 top-1/2 -translate-y-1/2 h-2 w-2 rounded-full bg-[#2160DC]" />
+                        )}
+                    </Link>
+                </Button>
             </TooltipTrigger>
             {isCollapsed && (
                 <TooltipContent side="right" className="flex items-center gap-4">
@@ -105,9 +113,9 @@ export function Sidebar() {
     )
 
     const CategorySection = ({ title, items }:CategorySectionProps) => (
-        <div className="mb-6">
+        <div className="mb-8">
             {!isCollapsed && (
-                <h3 className="mb-2 px-3 text-[#8A93A6] text-xs font-medium uppercase tracking-wider">
+                <h3 className="mb-3 px-4 text-[#4A5264] text-xs font-medium tracking-[0.2em] uppercase">
                     {title}
                 </h3>
             )}
@@ -167,7 +175,7 @@ export function Sidebar() {
                             </Button>
                         </div>
                     </div>
-                    <div className="flex-1 overflow-auto py-6 px-3">
+                    <div className="flex-1 overflow-auto py-8 px-3">
                         <CategorySection title="DISCOVER" items={navigationItems.discover} />
                         <CategorySection title="CONTENT" items={navigationItems.content} />
                         <CategorySection title="ACCOUNT" items={navigationItems.account} />
@@ -178,7 +186,7 @@ export function Sidebar() {
                         <div className="p-4 mx-3 mb-4 bg-[#0B2847] rounded-lg">
                             <div className="text-sm font-medium text-white mb-1">Refer and get $5</div>
                             <div className="text-xs text-[#8A93A6] mb-3">Invite your friends to sign up using your referral code</div>
-                            <Button variant="outline" className="w-full bg-transparent text-white border-[#0C3766] hover:bg-[#0C3766]/50">
+                            <Button variant="outline" className="w-full">
                                 Refer
                             </Button>
                         </div>
