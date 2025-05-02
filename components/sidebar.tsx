@@ -85,7 +85,7 @@ export function Sidebar() {
                     <Button
                         variant="ghost"
                         className={cn(
-                            "w-full flex items-center px-4 py-3 text-base font-geomGraphy border border-[#1B3B68] transition-none",
+                            "w-full flex items-center justify-start px-4 py-3 text-base font-geomGraphy border border-[#1B3B68] transition-none",
                             "rounded-tr-2xl rounded-br-none rounded-tl-none rounded-bl-none",
                             isActive
                                 ? "bg-[#1B3B68] text-[#E6F0FF] border border-[#6CA0F6] font-geomGraphy"

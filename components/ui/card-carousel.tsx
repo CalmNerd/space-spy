@@ -52,14 +52,14 @@ export function CardCarousel({ className }: CardCarouselProps) {
                   <p className="text-sm text-[#8A93A6] mb-4">{card.description}</p>
                   <Button 
                     variant="outline" 
-                    className="w-full text-[#2160DC] border-[#2160DC]/20 hover:bg-[#2160DC]/10 hover:text-[#2160DC] hover:border-[#2160DC]/30 font-geomGraphy"
+                    className="w-full bg-[#03172B] rounded-tl-xl rounded-br-xl text-[#2160DC] border-[#2160DC]/20 hover:bg-[#2160DC]/10 hover:text-[#2160DC] hover:border-[#2160DC]/30 font-geomGraphy"
                   >
                     {card.buttonText}
                   </Button>
                 </div>
 
                 {/* Icon */}
-                <div className="absolute z-30 right-4 -top-16 w-[78px] h-[110px]">
+                <div className="absolute z-30 right-0 -top-16 w-[78px] h-[110px]">
                   <Image
                     src={card.icon === "star" ? "/referstar.svg" : "/proglobe.png"}
                     alt="Decoration"
