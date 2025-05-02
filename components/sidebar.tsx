@@ -77,48 +77,59 @@ export function Sidebar() {
     const [isCollapsed, setIsCollapsed] = useState(false)
     const [isMobileOpen, setIsMobileOpen] = useState(false)
 
-    const NavItem = ({ item }:NavItemProps) => (
-        <Tooltip delayDuration={0}>
-            <TooltipTrigger asChild>
-                <Button
-                    variant={pathname === item.href ? "nav-active" : "nav"}
-                    className={cn(
-                        "relative group",
-                        isCollapsed && "justify-center px-2"
-                    )}
-                    asChild
-                >
-                    <Link href={item.href}>
-                        <item.icon 
-                            className={cn(
-                                "h-5 w-5 shrink-0",
-                                !isCollapsed && "mr-3",
-                                pathname === item.href ? "text-white" : "text-[#4A5264] group-hover:text-white"
-                            )} 
-                        />
-                        {!isCollapsed && (
-                            <span className="font-medium tracking-wide">{item.name}</span>
+    const NavItem = ({ item }:NavItemProps) => {
+        const isActive = pathname === item.href;
+        return (
+            <Tooltip delayDuration={0}>
+                <TooltipTrigger asChild>
+                    <Button
+                        variant="ghost"
+                        className={cn(
+                            "w-full flex items-center px-4 py-3 text-base font-geomGraphy border border-[#1B3B68] transition-none",
+                            "rounded-tr-2xl rounded-br-none rounded-tl-none rounded-bl-none",
+                            isActive
+                                ? "bg-[#1B3B68] text-[#E6F0FF] border border-[#6CA0F6] font-geomGraphy"
+                                : "bg-transparent text-[#6CA0F6] hover:bg-[#1B3B68]/30 hover:text-[#E6F0FF] border border-transparent",
+                            isCollapsed && "justify-center px-2 text-lg",
+                            "relative group"
                         )}
-                        {item.badge && (
-                            <span className="absolute right-2 top-1/2 -translate-y-1/2 h-2 w-2 rounded-full bg-[#2160DC]" />
-                        )}
-                    </Link>
-                </Button>
-            </TooltipTrigger>
-            {isCollapsed && (
-                <TooltipContent side="right" className="flex items-center gap-4">
-                    {item.name}
-                </TooltipContent>
-            )}
-        </Tooltip>
-    )
+                        asChild
+                    >
+                        <Link href={item.href}>
+                            <item.icon
+                                className={cn(
+                                    "h-5 w-5 shrink-0",
+                                    !isCollapsed && "mr-3",
+                                    isActive ? "text-[#6CA0F6]" : "text-[#6CA0F6] group-hover:text-[#E6F0FF]"
+                                )}
+                            />
+                            {!isCollapsed && (
+                                <span className="font-geomGraphy font-normal tracking-wide">{item.name}</span>
+                            )}
+                            {item.badge && (
+                                <span className="absolute right-2 top-1/2 -translate-y-1/2 h-2 w-2 rounded-full bg-[#6CA0F6]" />
+                            )}
+                        </Link>
+                    </Button>
+                </TooltipTrigger>
+                {isCollapsed && (
+                    <TooltipContent side="right" className="flex items-center gap-4">
+                        {item.name}
+                    </TooltipContent>
+                )}
+            </Tooltip>
+        );
+    };
 
     const CategorySection = ({ title, items }:CategorySectionProps) => (
-        <div className="mb-8">
+        <div className="mb-2">
             {!isCollapsed && (
-                <h3 className="mb-3 px-4 text-[#4A5264] text-xs font-medium tracking-[0.2em] uppercase">
-                    {title}
-                </h3>
+                <>
+                    <h3 className="mb-2 px-4 text-[#6CA0F6] text-xs font-geomGraphy font-medium tracking-[0.2em] uppercase">
+                        {title}
+                    </h3>
+                    <div className="border-b border-[#1B3B68] mx-4 mb-2" />
+                </>
             )}
             <nav className="space-y-1">
                 {items.map((item) => (
@@ -126,7 +137,7 @@ export function Sidebar() {
                 ))}
             </nav>
         </div>
-    )
+    );
 
     return (
         <TooltipProvider>
@@ -140,18 +151,18 @@ export function Sidebar() {
                 </button>
                 <div
                     className={cn(
-                        "fixed inset-y-0 z-20 flex flex-col font-geomGraphy transition-all duration-300 ease-in-out lg:static",
+                        "fixed inset-y-0 z-20 flex flex-col font-geomGraphy transition-all duration-300 ease-in-out lg:static border-r border-[#1B3B68] bg-[#0B1426]",
                         isCollapsed ? "w-[72px]" : "w-[311px]",
                         isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
                     )}
                     style={{
                         backgroundImage: 'url("/leftnav_bg.svg")',
                         backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat'
+                        backgroundRepeat: 'no-repeat',
                     }}
                 >
-                    <div className="border-b pt-4 border-[#0C3766]/50">
-                        <div className={cn("flex h-16 items-center gap-2 px-4", isCollapsed && "justify-center px-2")}>
+                    <div className="pt-4 pb-2 px-4">
+                        <div className={cn("flex h-16 items-center gap-2", isCollapsed && "justify-center px-2")}> 
                             {!isCollapsed && (
                                 <Link href="/" className="flex items-center font-semibold h-full">
                                     <div className="text-lg relative h-full w-full">
@@ -168,7 +179,7 @@ export function Sidebar() {
                             <Button
                                 variant="ghost"
                                 size="sm"
-                                className={cn("ml-auto h-8 w-8 text-white", isCollapsed && "ml-0")}
+                                className={cn("ml-auto h-8 w-8 text-[#6CA0F6]", isCollapsed && "ml-0")}
                                 onClick={() => setIsCollapsed(!isCollapsed)}
                             >
                                 <ChevronLeft className={cn("h-4 w-4 transition-transform", isCollapsed && "rotate-180")} />
@@ -176,19 +187,19 @@ export function Sidebar() {
                             </Button>
                         </div>
                     </div>
-                    <div className="flex-1 overflow-auto pt-8  px-3">
+                    <div className="flex-1 overflow-auto pt-2 pb-0 px-0">
                         <CategorySection title="DISCOVER" items={navigationItems.discover} />
                         <CategorySection title="CONTENT" items={navigationItems.content} />
                         <CategorySection title="ACCOUNT" items={navigationItems.account} />
                         <CategorySection title="OTHER" items={navigationItems.other} />
                     </div>
                     {!isCollapsed && (
-                        <div className="">
+                        <div className="px-3 pb-4 pt-2">
                             <CardCarousel />
                         </div>
                     )}
                 </div>
             </>
         </TooltipProvider>
-    )
+    );
 }
