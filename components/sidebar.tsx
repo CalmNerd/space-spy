@@ -1,194 +1,185 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import {
-    Home,
-    BarChart2,
-    Building2,
-    Folder,
-    Wallet,
-    Receipt,
-    CreditCard,
-    Users2,
-    Shield,
-    MessagesSquare,
-    Video,
-    Settings,
-    HelpCircle,
-    Menu,
-    ChevronLeft,
-    LucideIcon,
-} from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip"
-import Image from "next/image"
+import { useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { Menu } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip'
+import { CardCarousel } from '@/components/ui/card-carousel'
+import Image from 'next/image'
 
-interface NavItem {
-    name: string;
-    href: string;
-    icon: LucideIcon;
+const Icon = ({ name, className }: { name: string; className: string }) => {
+  return (
+    <Image
+      src={`/icons/${name}.svg`}
+      width={20}
+      height={20}
+      alt={`${name} icon`}
+      className={className}
+    />
+  )
 }
 
-// interface NavigationItems {
-//     discover: NavItem[];
-//     content: NavItem[];
-//     account: NavItem[];
-//     other: NavItem[];
-//     bottom: NavItem[];
-// }
+interface NavItem {
+  name: string
+  href: string
+  iconName: string
+  badge?: boolean
+}
 
 interface NavItemProps {
-    item: NavItem;
+  item: NavItem
 }
 
 interface CategorySectionProps {
-    title: string;
-    items: NavItem[];
+  title: string
+  items: NavItem[]
 }
 
-// Reorganize navigation items by category
 const navigationItems = {
-    discover: [
-        { name: "Dashboard", href: "/", icon: Home },
-        { name: "Transcribe", href: "/transcribe", icon: BarChart2 },
-        { name: "How-to-Use", href: "/how-to-use", icon: Building2 },
-        { name: "Trending Spaces", href: "/trending-spaces", icon: Folder },
-    ],
-    content: [
-        { name: "My Library", href: "/my-library", icon: Wallet },
-    ],
-    account: [
-        { name: "Profile", href: "/profile", icon: Receipt },
-        { name: "Subscription", href: "/subscription", icon: CreditCard },
-        { name: "Referrals", href: "/referrals", icon: Users2 },
-    ],
-    other: [
-        { name: "What's New", href: "/whats-new", icon: Shield },
-        { name: "Notifications", href: "/notifications", icon: MessagesSquare },
-        { name: "Telegram Support", href: "/telegram-support", icon: Video },
-    ],
-    bottom: [
-        { name: "Settings", href: "/settings", icon: Settings },
-        { name: "Help", href: "/help", icon: HelpCircle },
-    ]
+  discover: [
+    { name: 'Dashboard', href: '/dashboard', iconName: 'dashboard' },
+    { name: 'Transcribe', href: '/transcribe', iconName: 'transcribe' },
+    { name: 'How-to-Use', href: '/how-to-use', iconName: 'how-to-use' },
+    { name: 'Trending Spaces', href: '/trending-spaces', iconName: 'trending-spaces', badge: true },
+  ],
+  content: [{ name: 'My Library', href: '/my-library', iconName: 'library' }],
+  account: [
+    { name: 'Profile', href: '/profile', iconName: 'profile' },
+    { name: 'Subscription', href: '/subscription', iconName: 'subscription' },
+    { name: 'Referrals', href: '/referrals', iconName: 'referrals' },
+  ],
+  other: [
+    { name: "What's New", href: "/what's-new", iconName: 'whats-new', badge: true },
+    { name: 'Notifications', href: '/notifications', iconName: 'notification' },
+    { name: 'Telegram Support', href: '/telegram-support', iconName: 'telegram' },
+  ],
 }
 
 export function Sidebar() {
-    const pathname = usePathname()
-    const [isCollapsed, setIsCollapsed] = useState(false)
-    const [isMobileOpen, setIsMobileOpen] = useState(false)
+  const pathname = usePathname()
+  const [isMobileOpen, setIsMobileOpen] = useState(false)
 
-    const NavItem = ({ item }:NavItemProps) => (
-        <Tooltip delayDuration={0}>
-            <TooltipTrigger asChild>
-                <Link
-                    href={item.href}
-                    className={cn(
-                        "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                        pathname === item.href
-                            ? "bg-secondary text-secondary-foreground"
-                            : "text-muted-foreground hover:bg-secondary hover:text-secondary-foreground",
-                        isCollapsed && "justify-center px-2",
-                    )}
-                >
-                    <item.icon className={cn("h-4 w-4", !isCollapsed && "mr-3")} />
-                    {!isCollapsed && <span>{item.name}</span>}
-                </Link>
-            </TooltipTrigger>
-            {isCollapsed && (
-                <TooltipContent side="right" className="flex items-center gap-4">
-                    {item.name}
-                </TooltipContent>
-            )}
-        </Tooltip>
-    )
+  const isSidebarCollapsed = pathname === '/' || pathname === '/dashboard' ? true : false
 
-    const CategorySection = ({ title, items }:CategorySectionProps) => (
-        <div className="mb-6">
-            {!isCollapsed && (
-                <h3 className="mb-4 px-3 text-foreground/60 text-xs font-semibold uppercase tracking-wider">
-                    {title}
-                </h3>
-            )}
-            <nav className="space-y-1">
-                {items.map((item) => (
-                    <NavItem key={item.name} item={item} />
-                ))}
-            </nav>
-        </div>
-    )
-
+  const NavItem = ({ item }: NavItemProps) => {
+    const isActive = pathname === item.href
     return (
-        <TooltipProvider>
-            <>
-                <button
-                    className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-background rounded-md shadow-md"
-                    onClick={() => setIsMobileOpen(!isMobileOpen)}
-                    aria-label="Toggle sidebar"
-                >
-                    <Menu className="h-6 w-6" />
-                </button>
-                <div
-                    className={cn(
-                        "fixed inset-y-0 z-20 flex flex-col font-geomGraphy bg-background transition-all duration-300 ease-in-out lg:static",
-                        isCollapsed ? "w-[72px]" : "w-72",
-                        isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
-                    )}
-                >
-                    <div className="border-b border-border">
-                        <div className={cn("flex h-16 items-center gap-2 px-4", isCollapsed && "justify-center px-2")}>
-                            {!isCollapsed && (
-                                <Link href="/" className="flex items-center font-semibold h-full">
-                                    <div className="text-lg relative h-full w-full">
-                                        <Image
-                                            src="/logo.svg"
-                                            width={150}
-                                            height={150}
-                                            alt="logo"
-                                            className="h-full"
-                                        />
-                                        {/* Space Spy */}
-                                    </div>
-                                </Link>
-                            )}
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                className={cn("ml-auto h-8 w-8", isCollapsed && "ml-0")}
-                                onClick={() => setIsCollapsed(!isCollapsed)}
-                            >
-                                <ChevronLeft className={cn("h-4 w-4 transition-transform", isCollapsed && "rotate-180")} />
-                                <span className="sr-only">{isCollapsed ? "Expand" : "Collapse"} Sidebar</span>
-                            </Button>
-                        </div>
-                    </div>
-                    <div className="flex-1 overflow-auto py-6 px-2">
-                        <CategorySection title="DISCOVER" items={navigationItems.discover} />
-                        
-                        <div className="h-px bg-border my-4" />
-                        <CategorySection title="CONTENT" items={navigationItems.content} />
-                        
-                        <div className="h-px bg-border my-4" />
-                        <CategorySection title="ACCOUNT" items={navigationItems.account} />
-                        
-                        <div className="h-px bg-border my-4" />
-                        <CategorySection title="OTHER" items={navigationItems.other} />
-                    </div>
-
-                    {/* might need in future */}
-
-                    {/* <div className="border-t border-border p-2">
-                        <nav className="space-y-1">
-                            {navigationItems.bottom.map((item) => (
-                                <NavItem key={item.name} item={item} />
-                            ))}
-                        </nav>
-                    </div> */}
-                </div>
-            </>
-        </TooltipProvider>
+      <Tooltip delayDuration={0}>
+        <TooltipTrigger asChild>
+          <Button
+            variant="ghost"
+            className={cn(
+              'w-full flex items-center justify-start px-4 py-3 text-base font-geomGraphy border border-[#1B3B68] transition-none',
+              'rounded-tr-2xl rounded-br-none rounded-tl-none rounded-bl-none',
+              'text-foreground/80 text-sm',
+              isActive
+                ? 'sidebar-gradient-bg bg-foreground/15 font-geomGraphy'
+                : 'bg-transparent hover:bg-[#1B3B68]/30 hover:text-[#E6F0FF] border border-transparent',
+              isSidebarCollapsed && 'justify-center px-2 text-lg',
+              'relative group'
+            )}
+            asChild
+          >
+            <Link href={item.href}>
+              <Icon
+                name={item.iconName}
+                className={cn(
+                  'h-5 w-5 shrink-0',
+                  !isSidebarCollapsed && 'mr-3',
+                  isActive ? 'text-[#6CA0F6]' : 'text-[#6CA0F6] group-hover:text-[#E6F0FF]'
+                )}
+              />
+              {!isSidebarCollapsed && (
+                <span className="font-geomGraphy font-normal tracking-wide">{item.name}</span>
+              )}
+              {item.badge && (
+                <span className="absolute right-2 top-1/2 -translate-y-1/2 h-2 w-2 rounded-full bg-[#6CA0F6]" />
+              )}
+            </Link>
+          </Button>
+        </TooltipTrigger>
+        {isSidebarCollapsed && (
+          <TooltipContent side="right" className="flex items-center gap-4">
+            {item.name}
+          </TooltipContent>
+        )}
+      </Tooltip>
     )
+  }
+
+  const CategorySection = ({ title, items }: CategorySectionProps) => (
+    <div className="mb-2">
+      {!isSidebarCollapsed && (
+        <>
+          <h3 className="mb-2 px-4 text-foreground/60 text-xs font-geomGraphy font-medium tracking-[0.2em] uppercase">
+            {title}
+          </h3>
+          <div className="border-b border-[#1B3B68] mx-4 mb-2" />
+        </>
+      )}
+      <nav className="space-y-1">
+        {items.map((item) => (
+          <NavItem key={item.name} item={item} />
+        ))}
+      </nav>
+    </div>
+  )
+
+  return (
+    <TooltipProvider>
+      <>
+        <button
+          className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-background rounded-md shadow-md"
+          onClick={() => setIsMobileOpen(!isMobileOpen)}
+          aria-label="Toggle sidebar"
+        >
+          <Menu className="h-6 w-6" />
+        </button>
+        <div
+          className={cn(
+            'fixed inset-y-0 z-20 flex flex-col font-geomGraphy transition-all duration-300 ease-in-out lg:static border-r border-[#1B3B68] bg-background/50',
+            isSidebarCollapsed ? 'w-[72px]' : 'w-[311px]',
+            isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+          )}
+          style={{
+            backgroundImage: 'url("/leftnav_bg.svg")',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <div className="pt-4 pb-2 px-4">
+            <div className={cn('flex h-16 items-center gap-2', isSidebarCollapsed && 'justify-center px-2')}>
+              {!isSidebarCollapsed && (
+                <Link href="/" className="flex items-center font-semibold h-full">
+                  <div className="text-lg relative h-full w-full">
+                    <Image
+                      src="/logo.svg"
+                      width={100}
+                      height={100}
+                      alt="logo"
+                      className="h-full"
+                    />
+                  </div>
+                </Link>
+              )}
+            </div>
+          </div>
+          <div className="flex-1 overflow-auto pt-2 pb-0 px-0">
+            <CategorySection title="DISCOVER" items={navigationItems.discover} />
+            <CategorySection title="CONTENT" items={navigationItems.content} />
+            <CategorySection title="ACCOUNT" items={navigationItems.account} />
+            <CategorySection title="OTHER" items={navigationItems.other} />
+          </div>
+          {!isSidebarCollapsed && (
+            <div className="px-3 pb-4 pt-2">
+              <CardCarousel />
+            </div>
+          )}
+        </div>
+      </>
+    </TooltipProvider>
+  )
 }
