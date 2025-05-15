@@ -9,17 +9,17 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-black text-blue-400 shadow-md border border-blue-500 hover:bg-blue-900/20 hover:border-blue-400 hover:text-blue-300",
+          "bg-black text-blue-400 border border-blue-500 hover:bg-blue-900/20 hover:border-blue-400 hover:text-blue-300",
         b_tr:
-          "bg-black text-blue-400 shadow-md border rounded-tr-md border-blue-500 hover:bg-blue-900/20 hover:border-blue-400 hover:text-blue-300",
+          "bg-black text-blue-400 border rounded-tr-md border-blue-500 hover:bg-blue-900/20 hover:border-blue-400 hover:text-blue-300",
         b_tl_br:
-          "bg-black text-blue-400 shadow-md border rounded-tl-md rounded-br-md border-blue-500 hover:bg-blue-900/20 hover:border-blue-400 hover:text-blue-300",
+          "bg-black text-blue-400 border rounded-tl-md rounded-br-md border-blue-500 hover:bg-blue-900/20 hover:border-blue-400 hover:text-blue-300",
         destructive:
-          "bg-black text-red-400 shadow-md border border-red-500 hover:bg-red-900/20 hover:border-red-400 hover:text-red-300",
+          "bg-black text-red-400 border border-red-500 hover:bg-red-900/20 hover:border-red-400 hover:text-red-300",
         outline:
-          "bg-black/90 text-blue-400 shadow-md border border-blue-500 hover:bg-blue-900/20 hover:border-blue-400 hover:text-blue-300",
+          "bg-black/90 text-blue-400 border border-blue-500 hover:bg-blue-900/20 hover:border-blue-400 hover:text-blue-300",
         secondary:
-          "bg-black/90 text-purple-400 shadow-md border border-purple-500 hover:bg-purple-900/20 hover:border-purple-400 hover:text-purple-300",
+          "bg-black/90 text-purple-400 border border-purple-500 hover:bg-purple-900/20 hover:border-purple-400 hover:text-purple-300",
         ghost:
           "text-blue-400 hover:border hover:border-blue-500 hover:bg-blue-900/20",
         link: "text-blue-400 underline-offset-4 hover:underline",
