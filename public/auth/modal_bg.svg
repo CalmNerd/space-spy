@@ -1,0 +1,18 @@
+<svg width="715" height="900" viewBox="0 0 715 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+<foreignObject x="-0.00585938" y="0" width="714.712" height="900"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(47.65px);clip-path:url(#bgblur_0_2482_17997_clip_path);height:100%;width:100%"></div></foreignObject><g filter="url(#filter0_g_2482_17997)" data-figma-bg-blur-radius="95.3">
+<path d="M133.5 799L116 799L101 783.5L102.206 701L102.206 285L105.706 280L105.706 178L102.206 173.5L102.206 116L118.706 101L596.206 101L613.706 116L613.706 164L608.706 169L607.5 729.5L612.5 734.5L612.5 782L596 799L133.5 799Z" fill="#000714" fill-opacity="0.5"/>
+<path d="M596.391 100.5L596.531 100.62L614.031 115.62L614.206 115.77L614.206 164.207L609.205 169.208L608 729.294L612.854 734.146L613 734.293L613 782.203L612.858 782.349L596.358 799.349L596.212 799.5L115.788 799.5L115.641 799.348L100.641 783.848L100.497 783.699L100.5 783.493L101.706 700.993L101.706 284.843L101.796 284.713L105.206 279.841L105.206 178.171L101.811 173.807L101.706 173.672L101.706 115.779L101.869 115.63L118.369 100.63L118.513 100.5L596.391 100.5Z" stroke="#0C3766"/>
+</g>
+<defs>
+<filter id="filter0_g_2482_17997" x="-0.00585938" y="0" width="714.712" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feTurbulence type="fractalNoise" baseFrequency="inf inf" numOctaves="3" seed="4389" />
+<feDisplacementMap in="shape" scale="200" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+<feMerge result="effect1_texture_2482_17997">
+<feMergeNode in="displacedImage"/>
+</feMerge>
+</filter>
+<clipPath id="bgblur_0_2482_17997_clip_path" transform="translate(0.00585938 0)"><path d="M133.5 799L116 799L101 783.5L102.206 701L102.206 285L105.706 280L105.706 178L102.206 173.5L102.206 116L118.706 101L596.206 101L613.706 116L613.706 164L608.706 169L607.5 729.5L612.5 734.5L612.5 782L596 799L133.5 799Z"/>
+</clipPath></defs>
+</svg>

@@ -1,0 +1,18 @@
+ <!-- <svg width="1791" height="145" viewBox="0 0 1791 145" fill="none" xmlns="http://www.w3.org/2000/svg"> -->
+ <svg 
+className="w-full h-[145px] block"
+viewBox="0 0 1791 145"
+preserveAspectRatio="none"
+fill="none"
+xmlns="http://www.w3.org/2000/svg"
+>
+<foreignObject x="-20" y="-20" width="1831" height="185"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(10px);clip-path:url(#bgblur_0_0_1_clip_path);height:100%;width:100%"></div></foreignObject><path data-figma-bg-blur-radius="20" d="M1790.5 112.248L1790.44 112.359L1773.12 144.238L1772.98 144.5H1716.99L1716.84 144.268L1711.21 135.392H81.5176L75.8916 144.268L75.7441 144.5H20.3574L20.209 144.273L0.581055 114.216L0.5 114.092V28.1758L0.582031 28.0508L18.4775 0.725586L18.626 0.5H1577.78L1577.93 0.664062L1583.55 6.87598H1700.86L1705.91 0.68457L1706.06 0.5H1772.97L1773.12 0.75L1790.43 30.8076L1790.5 30.9238V112.248Z" fill="#000714" fill-opacity="0.5" stroke="#0C3766"/>
+<rect x="261" y="14" width="22.7795" height="3" fill="#0F5181"/>
+<rect x="298.02" y="14" width="11.3897" height="3" fill="#0F5181"/>
+<rect x="397.676" y="14" width="11.3897" height="3" fill="#0F5181"/>
+<rect x="417.613" y="14" width="11.3897" height="3" fill="#0F5181"/>
+<rect x="323.641" y="14" width="59.7961" height="3" fill="#0F5181"/>
+<defs>
+<clipPath id="bgblur_0_0_1_clip_path" transform="translate(20 20)"><path d="M1790.5 112.248L1790.44 112.359L1773.12 144.238L1772.98 144.5H1716.99L1716.84 144.268L1711.21 135.392H81.5176L75.8916 144.268L75.7441 144.5H20.3574L20.209 144.273L0.581055 114.216L0.5 114.092V28.1758L0.582031 28.0508L18.4775 0.725586L18.626 0.5H1577.78L1577.93 0.664062L1583.55 6.87598H1700.86L1705.91 0.68457L1706.06 0.5H1772.97L1773.12 0.75L1790.43 30.8076L1790.5 30.9238V112.248Z"/>
+</clipPath></defs>
+</svg>

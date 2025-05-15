@@ -1,0 +1,103 @@
+{
+    "topCoins": [
+        {
+            "id": 1,
+            "symbol": "BTC",
+            "mentions": 99,
+            "change": "+2.88%",
+            "changeType": "positive",
+            "icon": "/bitcoin.png"
+        },
+        {
+            "id": 2,
+            "symbol": "ETH",
+            "mentions": 78,
+            "change": "-7.32%",
+            "changeType": "negative",
+            "icon": "etherium.png"
+        },
+        {
+            "id": 3,
+            "symbol": "SOL",
+            "mentions": 97,
+            "change": "+6.13%",
+            "changeType": "positive",
+            "icon": "solana.png"
+        }
+    ],
+    "marqueeItems": [
+        {
+            "id": 1,
+            "type": "user",
+            "subtype": "speaking",
+            "content": {
+                "username": "@StealthMedical1",
+                "avatar": "/Daniel.png"
+            }
+        },
+        {
+            "id": 2,
+            "type": "group",
+            "content": {
+                "count": 543,
+                "label": "TUBES EDUCATION",
+                "avatars": [
+                    "/Daniel.png",
+                    "/Daniel.png",
+                    "/Daniel.png"
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "type": "user",
+            "subtype": "speaking",
+            "content": {
+                "username": "@StealthMedical1",
+                "avatar": "/Daniel.png"
+            }
+        },
+        {
+            "id": 4,
+            "type": "user",
+            "subtype": "hosting",
+            "content": {
+                "username": "@BecauseBitcoin.com",
+                "avatar": "/Daniel.png"
+            }
+        },
+        {
+            "id": 5,
+            "type": "user",
+            "subtype": "speaking",
+            "content": {
+                "username": "@Will's Outlook",
+                "avatar": "/Daniel.png"
+            }
+        },
+        {
+            "id": 6,
+            "type": "group",
+            "content": {
+                "count": 154,
+                "label": "Majors and memes",
+                "avatars": [
+                    "/Daniel.png",
+                    "/Daniel.png",
+                    "/Daniel.png"
+                ]
+            }
+        },
+        {
+            "id": 7,
+            "type": "user",
+            "subtype": "speaking",
+            "content": {
+                "username": "@StealthMedical1",
+                "avatar": "/Daniel.png"
+            }
+        }
+    ],
+    "showSearch": true,
+    "showCoinsButton": true
+}

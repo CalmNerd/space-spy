@@ -1,0 +1,15 @@
+{
+    "priceData": [
+      { "time": "00:05", "price": 90000 },
+      { "time": "03:41", "price": 89700 },
+      { "time": "06:32", "price": 91200 },
+      { "time": "09:26", "price": 91800 },
+      { "time": "12:11", "price": 92500 },
+      { "time": "14:50", "price": 93500 },
+      { "time": "17:41", "price": 93800 },
+      { "time": "20:32", "price": 93400 },
+      { "time": "23:32", "price": 93263 }
+    ],
+    "currentPrice": 93263,
+    "dominance": 63.46
+  }

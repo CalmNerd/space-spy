@@ -1,0 +1,7 @@
+[
+  { "name": "Bitcoin", "symbol": "BTC", "price": 63477, "change24h": 0.76 },
+  { "name": "Solana", "symbol": "SOL", "price": 132.21, "change24h": 4.63 },
+  { "name": "Farcoint", "symbol": "FAR", "price": 0.938075, "change24h": 1.43 },
+  { "name": "Ethereum", "symbol": "ETH", "price": 1588.79, "change24h": -0.08 },
+  { "name": "TRON", "symbol": "TRX", "price": 0.249008, "change24h": -0.65 }
+] 
